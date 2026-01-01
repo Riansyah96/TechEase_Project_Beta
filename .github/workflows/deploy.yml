@@ -17,10 +17,10 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          script: |
+         script: |
             cd /var/www/my-laravel-app || git clone https://github.com/${{ github.repository }}.git /var/www/my-laravel-app
             cd /var/www/my-laravel-app
             git pull origin main
+            # Tambahkan perintah down untuk membersihkan container lama
+            docker compose down 
             docker compose up -d --build
-            docker compose exec -T app php artisan migrate --force
-            docker compose exec -T app php artisan config:cache
