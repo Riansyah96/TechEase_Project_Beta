@@ -5,8 +5,9 @@ services:
       dockerfile: Dockerfile
     image: laravel-app
     restart: unless-stopped
-    volumes:
-      - .:/var/www
+    # HAPUS atau KOMENTARI baris volume .:/var/www agar vendor di dalam container tidak hilang
+    # volumes:
+    #   - .:/var/www 
     networks:
       - laravel
 
@@ -16,8 +17,8 @@ services:
     ports:
       - "80:80"
     volumes:
-      - .:/var/www
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      # Gunakan jalur relatif yang jelas dan pastikan file nginx.conf ada di repo
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
       - app
     networks:
