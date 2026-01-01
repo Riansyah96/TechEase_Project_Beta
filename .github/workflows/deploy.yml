@@ -19,21 +19,18 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           # Perbaikan: Pastikan 'script' sejajar dengan 'host/username/key'
           script: |
-            # Masuk ke folder atau clone jika belum ada
-            if [ ! -d "/var/www/my-laravel-app" ]; then
-              sudo mkdir -p /var/www/my-laravel-app
-              sudo chown ${{ secrets.USERNAME }}:${{ secrets.USERNAME }} /var/www/my-laravel-app
-              git clone https://github.com/${{ github.repository }}.git /var/www/my-laravel-app
-            fi
-            
             cd /var/www/my-laravel-app
             git pull origin main
             
-            # Bersihkan container lama dan build ulang
+            # Hapus paksa folder nginx.conf jika git pull malah menjadikannya folder
+            [ -d "nginx.conf" ] && rm -rf nginx.conf && git checkout nginx.conf
+            
             docker compose down
             docker compose up -d --build
             
-            # Jalankan perintah Laravel di dalam container (Sangat Penting!)
-            # Ini memastikan database terupdate dan cache dibersihkan
+            # Jalankan optimasi tanpa 'optimize' (karena optimize akan error jika route bermasalah)
+            # Kita jalankan satu per satu agar tahu mana yang gagal
             docker compose exec -T app php artisan migrate --force
-            docker compose exec -T app php artisan optimize
+            docker compose exec -T app php artisan config:cache
+            docker compose exec -T app php artisan view:cache
+            # Jangan jalankan route:cache sampai Anda memperbaiki duplikasi route tadi
