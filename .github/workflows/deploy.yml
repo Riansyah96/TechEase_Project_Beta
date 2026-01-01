@@ -17,10 +17,23 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-         script: |
-            cd /var/www/my-laravel-app || git clone https://github.com/${{ github.repository }}.git /var/www/my-laravel-app
+          # Perbaikan: Pastikan 'script' sejajar dengan 'host/username/key'
+          script: |
+            # Masuk ke folder atau clone jika belum ada
+            if [ ! -d "/var/www/my-laravel-app" ]; then
+              sudo mkdir -p /var/www/my-laravel-app
+              sudo chown ${{ secrets.USERNAME }}:${{ secrets.USERNAME }} /var/www/my-laravel-app
+              git clone https://github.com/${{ github.repository }}.git /var/www/my-laravel-app
+            fi
+            
             cd /var/www/my-laravel-app
             git pull origin main
-            # Tambahkan perintah down untuk membersihkan container lama
-            docker compose down 
+            
+            # Bersihkan container lama dan build ulang
+            docker compose down
             docker compose up -d --build
+            
+            # Jalankan perintah Laravel di dalam container (Sangat Penting!)
+            # Ini memastikan database terupdate dan cache dibersihkan
+            docker compose exec -T app php artisan migrate --force
+            docker compose exec -T app php artisan optimize
