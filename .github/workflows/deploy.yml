@@ -22,15 +22,19 @@ jobs:
             cd /var/www/my-laravel-app
             git pull origin main
             
-            # Hapus paksa folder nginx.conf jika git pull malah menjadikannya folder
-            [ -d "nginx.conf" ] && rm -rf nginx.conf && git checkout nginx.conf
+            # CEK: Jika nginx.conf adalah folder, hapus dan ambil filenya
+            if [ -d "nginx.conf" ]; then
+                sudo rm -rf nginx.conf
+                git checkout nginx.conf
+            fi
             
+            # Jalankan docker
             docker compose down
             docker compose up -d --build
             
-            # Jalankan optimasi tanpa 'optimize' (karena optimize akan error jika route bermasalah)
-            # Kita jalankan satu per satu agar tahu mana yang gagal
+            # Eksekusi perintah Laravel
             docker compose exec -T app php artisan migrate --force
             docker compose exec -T app php artisan config:cache
             docker compose exec -T app php artisan view:cache
-            # Jangan jalankan route:cache sampai Anda memperbaiki duplikasi route tadi
+            # Baris di bawah ini akan sukses SETELAH Anda memperbaiki nama route tadi
+            docker compose exec -T app php artisan route:cache
