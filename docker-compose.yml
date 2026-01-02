@@ -5,9 +5,8 @@ services:
       dockerfile: Dockerfile
     image: laravel-app
     restart: unless-stopped
-    # HAPUS atau KOMENTARI baris volume .:/var/www agar vendor di dalam container tidak hilang
-    # volumes:
-    #   - .:/var/www 
+    volumes:
+      - ./.env:/var/www/.env # Tambahkan baris ini agar .env terbaca
     networks:
       - laravel
 
