@@ -1,0 +1,36 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          # Perbaikan: Pastikan 'script' sejajar dengan 'host/username/key'
+          script: |
+            cd /var/www/my-laravel-app
+            git pull origin main
+            
+            # Hapus paksa folder nginx.conf jika git pull malah menjadikannya folder
+            [ -d "nginx.conf" ] && rm -rf nginx.conf && git checkout nginx.conf
+            
+            docker compose down
+            docker compose up -d --build
+            
+            # Jalankan optimasi tanpa 'optimize' (karena optimize akan error jika route bermasalah)
+            # Kita jalankan satu per satu agar tahu mana yang gagal
+            docker compose exec -T app php artisan migrate --force
+            docker compose exec -T app php artisan config:cache
+            docker compose exec -T app php artisan view:cache
+            # Jangan jalankan route:cache sampai Anda memperbaiki duplikasi route tadi
