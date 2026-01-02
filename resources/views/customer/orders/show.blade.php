@@ -101,7 +101,7 @@
                 </div>
 
                 @if($order->status == 'pending')
-                <form action="{{ route('customer.orders.cancel', $order->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin membatalkan pesanan ini?')">
+                <form action="{{ route('customer.orders.cancel.process', $order->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin membatalkan pesanan ini?')">
                     @csrf
                     <button type="submit" class="w-full py-4 rounded-2xl bg-red-50 text-red-600 font-bold hover:bg-red-100 transition border border-red-100">
                         Batalkan Pesanan

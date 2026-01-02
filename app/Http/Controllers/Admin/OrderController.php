@@ -10,79 +10,50 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::with(['user', 'service'])->latest()->paginate(20);
+        $orders = Order::with(['user', 'service'])->latest()->paginate(10);
         return view('admin.orders.index', compact('orders'));
     }
 
     public function show(Order $order)
     {
-        $order->load(['user', 'service', 'review']);
         return view('admin.orders.show', compact('order'));
     }
 
-    public function edit(Order $order)
+    // Fungsi Baru: Menyetujui Pembatalan
+    public function approveCancel(Order $order)
     {
-        $order->load(['user', 'service']);
-        return view('admin.orders.edit', compact('order'));
-    }
+        if ($order->status !== 'cancel_pending') {
+            return back()->with('error', 'Pesanan tidak dalam status pengajuan pembatalan.');
+        }
 
-    public function update(Request $request, Order $order)
-    {
-        $validated = $request->validate([
-            'status' => 'required|in:pending,processing,completed,cancelled',
-            'payment_status' => 'required|in:pending,paid,failed',
-            'admin_notes' => 'nullable|string|max:1000'
+        $order->update([
+            'status' => 'cancelled',
+            // 'payment_status' => 'refundeded' // Opsional jika ada sistem refund
         ]);
 
-        $order->update($validated);
+        return redirect()->route('admin.orders.show', $order->id)->with('success', 'Pembatalan pesanan telah disetujui.');
+    }
 
-        return redirect()->route('admin.orders.show', $order)
-                         ->with('success', 'Order updated successfully.');
+    // Fungsi Baru: Menolak Pembatalan
+    public function rejectCancel(Order $order)
+    {
+        if ($order->status !== 'cancel_pending') {
+            return back()->with('error', 'Pesanan tidak dalam status pengajuan pembatalan.');
+        }
+
+        // Kembalikan ke status pending
+        $order->update([
+            'status' => 'pending',
+            'cancel_reason' => null // Opsional: hapus alasan agar bersih kembali
+        ]);
+
+        return redirect()->route('admin.orders.show', $order->id)->with('success', 'Permintaan pembatalan ditolak. Pesanan kembali ke status Pending.');
     }
 
     public function updateStatus(Request $request, Order $order)
     {
-        $request->validate([
-            'status' => 'required|in:pending,processing,completed,cancelled'
-        ]);
-
-        $order->update([
-            'status' => $request->status
-        ]);
-
-        return back()->with('success', 'Status pesanan berhasil diperbarui ke: ' . strtoupper($request->status));
-    }
-
-    public function updatePaymentStatus(Request $request, Order $order)
-    {
-        $request->validate([
-            'payment_status' => 'required|in:pending,paid,failed'
-        ]);
-
-        $order->update(['payment_status' => $request->payment_status]);
-
-        return back()->with('success', 'Payment status updated successfully.');
-    }
-
-    public function approveCancel(Order $order)
-    {
-        // Admin menyetujui, maka status jadi 'cancelled'
-        $order->update([
-            'status' => 'cancelled',
-            'admin_notes' => 'Pembatalan disetujui oleh admin pada ' . now()->format('d M Y H:i')
-        ]);
-
-        return back()->with('success', 'Permintaan pembatalan pesanan ' . $order->order_code . ' telah disetujui.');
-    }
-
-    public function rejectCancel(Order $order)
-    {
-        // Admin menolak, maka status dikembalikan ke 'pending' atau 'processing'
-        $order->update([
-            'status' => 'pending', 
-            'admin_notes' => 'Permintaan pembatalan ditolak oleh admin.'
-        ]);
-
-        return back()->with('info', 'Permintaan pembatalan pesanan ' . $order->order_code . ' telah ditolak.');
+        $request->validate(['status' => 'required']);
+        $order->update(['status' => $request->status]);
+        return back()->with('success', 'Status pesanan berhasil diperbarui.');
     }
 }

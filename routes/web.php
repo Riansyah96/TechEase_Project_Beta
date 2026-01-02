@@ -56,16 +56,18 @@ Route::get('/home', function () {
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth', 'customer'])->prefix('customer')->name('customer.')->group(function () {
-    // Gunakan CustomerOrderController sesuai import di atas
     Route::get('/dashboard', [CustomerDashboardController::class, 'index'])->name('dashboard');
     
-    // Rute create harus didefinisikan SEBELUM resource jika ingin spesifik, 
-    // tapi Resource sudah mencakup orders.create secara otomatis.
-    Route::resource('/orders', CustomerOrderController::class)->except(['edit', 'update']);
-    
-    // Pastikan rute ini ada jika Anda memanggilnya dengan nama lengkap di Blade
-    Route::post('/orders/{order}/request-cancel', [CustomerOrderController::class, 'requestCancel'])->name('orders.cancel');
-    Route::post('/orders/{order}/cancel', [CustomerOrderController::class, 'requestCancel'])->name('orders.cancel');
+    // RUTE YANG DIPERBAIKI:
+    // 1. Rute untuk menampilkan halaman konfirmasi pembatalan (GET)
+    Route::get('/orders/{order}/cancel', [CustomerOrderController::class, 'cancel'])
+        ->name('orders.cancel'); 
+
+    // 2. Rute untuk memproses pembatalan (POST) - Ubah namanya agar unik
+    Route::post('/orders/{order}/cancel', [CustomerOrderController::class, 'cancelProcess'])
+        ->name('orders.cancel.process'); 
+
+    Route::resource('/orders', CustomerOrderController::class)->only(['index', 'show', 'create', 'store']);
 });
 
 /*
