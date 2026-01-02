@@ -19,22 +19,19 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           # Perbaikan: Pastikan 'script' sejajar dengan 'host/username/key'
           script: |
+            cd /var/www/my-laravel-app || git clone https://github.com/${{ github.repository }}.git /var/www/my-laravel-app
             cd /var/www/my-laravel-app
             git pull origin main
             
-            # CEK: Jika nginx.conf adalah folder, hapus dan ambil filenya
-            if [ -d "nginx.conf" ]; then
-                sudo rm -rf nginx.conf
-                git checkout nginx.conf
-            fi
+            # Buat file .env jika belum ada (opsional jika sudah manual)
+            if [ ! -f .env ]; then cp .env.example .env; fi
             
-            # Jalankan docker
-            docker compose down
             docker compose up -d --build
             
-            # Eksekusi perintah Laravel
+            # PASANG VENDOR DI SINI
+            docker compose exec -T app composer install --no-dev --optimize-autoloader
+            
+            # Jalankan sisanya
+            docker compose exec -T app php artisan key:generate --force
             docker compose exec -T app php artisan migrate --force
             docker compose exec -T app php artisan config:cache
-            docker compose exec -T app php artisan view:cache
-            # Baris di bawah ini akan sukses SETELAH Anda memperbaiki nama route tadi
-            docker compose exec -T app php artisan route:cache
