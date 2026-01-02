@@ -1,4 +1,4 @@
-FROM php:8.4-fpm
+FROM php:8.2-fpm
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -9,10 +9,16 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     unzip \
     git \
-    curl
+    curl \
+    gnupg # Tambahkan gnupg untuk install node
+
+# Install Node.js (Versi 20 LTS)
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo_mysql zip gd
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install pdo_mysql gd zip
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -20,13 +26,11 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www
 COPY . .
 
-# Install dependencies
+# Jalankan composer dan npm build
 RUN composer install --no-dev --optimize-autoloader
+RUN npm install && npm run build
 
-# FIX ERROR DISINI: Pastikan folder ada dan set permission
-RUN mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache bootstrap/cache
-RUN chown -R www-data:www-data storage bootstrap/cache
-RUN chmod -R 775 storage bootstrap/cache
+RUN chown -R www-data:www-data /var/www/storage /var/www/cache
 
 EXPOSE 9000
 CMD ["php-fpm"]
