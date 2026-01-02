@@ -74,7 +74,7 @@
                     </div>
                     <div>
                         <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Dalam Proses</p>
-                        <p class="text-2xl font-black text-gray-900 dark:text-white">{{ $orders->whereIn('status', ['pending', 'processing'])->count() }}</p>
+                        <p class="text-2xl font-black text-gray-900 dark:text-white">{{ $orders->whereIn('status', ['pending', 'processing', 'cancel_pending'])->count() }}</p>
                     </div>
                 </div>
             </div>
@@ -124,35 +124,43 @@
                                         'processing' => 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
                                         'completed' => 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
                                         'cancelled' => 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
+                                        'cancel_pending' => 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400',
                                     ];
                                 @endphp
                                 <span class="px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest {{ $statusClasses[$order->status] ?? 'bg-gray-100 text-gray-700' }}">
-                                    {{ $order->status }}
+                                    {{ str_replace('_', ' ', $order->status) }}
                                 </span>
                             </td>
                             <td class="px-8 py-6 text-sm font-black text-blue-600">
                                 Rp {{ number_format($order->service->price, 0, ',', '.') }}
                             </td>
                             <td class="px-8 py-6 text-right">
-                                @if($order->status === 'completed' && !$order->review)
-                                    <button onclick="openReviewModal('{{ $order->service->id }}', '{{ $order->id }}', '{{ $order->service->title }}')" 
-                                            class="px-5 py-2 bg-yellow-500 text-white rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-yellow-600 transition shadow-lg shadow-yellow-500/20">
-                                        <i class="fas fa-star mr-1"></i> Beri Ulasan
-                                    </button>
-                                @elseif($order->review)
-                                    <span class="text-[9px] font-black text-green-500 uppercase italic tracking-widest">Reviewed ✓</span>
-                                @else
-                                    <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest">No Action</span>
-                                @endif
+                                <div class="flex justify-end items-center gap-2">
+                                    {{-- Tombol Detail --}}
+                                    <a href="{{ route('customer.orders.show', $order->id) }}" 
+                                       class="px-4 py-2 bg-slate-100 dark:bg-gray-800 text-slate-600 dark:text-gray-400 rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white transition">
+                                        <i class="fas fa-eye mr-1"></i> Detail
+                                    </a>
+
+                                    {{-- Tombol Review --}}
+                                    @if($order->status === 'completed' && !$order->review)
+                                        <button onclick="openReviewModal('{{ $order->service->id }}', '{{ $order->id }}', '{{ $order->service->title }}')" 
+                                                class="px-4 py-2 bg-yellow-500 text-white rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-yellow-600 transition shadow-lg shadow-yellow-500/20">
+                                            <i class="fas fa-star mr-1"></i> Review
+                                        </button>
+                                    @elseif($order->review)
+                                        <span class="text-[9px] font-black text-green-500 uppercase italic tracking-widest px-2">Reviewed ✓</span>
+                                    @endif
+                                </div>
                             </td>
                         </tr>
                         @empty
                         <tr>
                             <td colspan="5" class="px-8 py-20 text-center">
                                 <div class="opacity-20 mb-4">
-                                    <i class="fas fa-box-open text-6xl"></i>
+                                    <i class="fas fa-box-open text-6xl text-gray-400"></i>
                                 </div>
-                                <p class="text-gray-500 font-bold italic uppercase tracking-widest">Belum ada pesanan layanan</p>
+                                <p class="text-gray-500 font-bold italic uppercase tracking-widest text-xs">Belum ada pesanan layanan</p>
                             </td>
                         </tr>
                         @endforelse
@@ -163,6 +171,7 @@
     </div>
 </div>
 
+{{-- Modal Review --}}
 <div id="reviewModal" class="fixed inset-0 z-[150] hidden overflow-y-auto" role="dialog" aria-modal="true">
     <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
         <div class="fixed inset-0 bg-slate-950/60 backdrop-blur-md transition-opacity" onclick="closeReviewModal()"></div>
