@@ -3,59 +3,133 @@
 @section('title', 'Tentang Kami')
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pt-24">
-    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
-        <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-6">Tentang TechEase ID</h1>
-        
-        <div class="prose dark:prose-invert max-w-none">
-            <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
-                TechEase ID adalah platform solusi IT yang didedikasikan untuk membantu individu, UMKM, 
-                dan kantor kecil mengatasi masalah teknologi dengan mudah, cepat, dan terpercaya.
-            </p>
-            
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Visi Kami</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
-                Menjadi mitra teknologi terdepan yang membuat solusi IT dapat diakses oleh semua kalangan, 
-                tanpa harus khawatir dengan kompleksitas teknis.
-            </p>
-            
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Misi Kami</h2>
-            <ul class="list-disc pl-6 text-gray-600 dark:text-gray-300 mb-6">
-                <li>Menyediakan layanan IT yang terjangkau dan berkualitas</li>
-                <li>Menyederhanakan solusi teknologi dalam bahasa yang mudah dipahami</li>
-                <li>Memberikan respon cepat dan pelayanan terbaik</li>
-                <li>Membangun ekosistem teknologi yang inklusif</li>
-            </ul>
-            
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Nilai-Nilai Kami</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div class="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg">
-                    <h3 class="font-bold text-blue-700 dark:text-blue-400 mb-2">Integritas</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Kami selalu jujur dan transparan dalam setiap layanan.</p>
-                </div>
-                <div class="bg-green-50 dark:bg-green-900/20 p-6 rounded-lg">
-                    <h3 class="font-bold text-green-700 dark:text-green-400 mb-2">Profesionalisme</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Tim teknisi kami tersertifikasi dan berpengalaman.</p>
-                </div>
-                <div class="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-lg">
-                    <h3 class="font-bold text-purple-700 dark:text-purple-400 mb-2">Inovasi</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Selalu mengikuti perkembangan teknologi terbaru.</p>
-                </div>
-                <div class="bg-orange-50 dark:bg-orange-900/20 p-6 rounded-lg">
-                    <h3 class="font-bold text-orange-700 dark:text-orange-400 mb-2">Kepuasan Pelanggan</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Prioritas utama kami adalah kepuasan Anda.</p>
-                </div>
+<div class="relative min-h-screen bg-slate-50 dark:bg-gray-950 overflow-hidden pt-32 pb-20">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-400/20 blur-[120px] rounded-full animate-pulse"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-400/20 blur-[120px] rounded-full animate-pulse shadow-2xl"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <div class="text-center mb-20">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/30 border border-blue-100 dark:border-blue-800 text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-widest mb-6">
+                Mengenal TechEase
             </div>
-            
-            <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg mt-8">
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Hubungi Kami</h3>
-                <p class="text-gray-600 dark:text-gray-300">
-                    <i class="fas fa-envelope mr-2"></i> Email: contact@techease.id<br>
-                    <i class="fas fa-phone mr-2"></i> Telepon: +62 812-XXXX-XXXX<br>
-                    <i class="fas fa-clock mr-2"></i> Jam Operasional: Senin - Jumat, 08:00 - 17:00 WIB
+            <h1 class="text-4xl md:text-6xl font-black text-slate-900 dark:text-white tracking-tighter mb-6">
+                Solusi IT Tanpa <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500">Ribet.</span>
+            </h1>
+            <p class="text-lg text-slate-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                TechEase ID adalah platform solusi IT yang didedikasikan untuk membantu individu, UMKM, dan kantor kecil mengatasi masalah teknologi dengan mudah, cepat, dan terpercaya.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-32">
+            <div class="bg-white/80 dark:bg-gray-900/50 backdrop-blur-xl border border-white dark:border-gray-800 rounded-3xl p-10 shadow-2xl shadow-blue-500/5">
+                <div class="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg shadow-blue-500/30">
+                    <i class="fas fa-eye text-xl"></i>
+                </div>
+                <h2 class="text-2xl font-black text-slate-900 dark:text-white mb-4 tracking-tight">Visi Kami</h2>
+                <p class="text-slate-600 dark:text-gray-400 leading-relaxed">
+                    Menjadi mitra teknologi terdepan yang membuat solusi IT dapat diakses oleh semua kalangan, tanpa harus khawatir dengan kompleksitas teknis.
+                </p>
+            </div>
+            <div class="bg-white/80 dark:bg-gray-900/50 backdrop-blur-xl border border-white dark:border-gray-800 rounded-3xl p-10 shadow-2xl shadow-indigo-500/5">
+                <div class="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg shadow-indigo-500/30">
+                    <i class="fas fa-bullseye text-xl"></i>
+                </div>
+                <h2 class="text-2xl font-black text-slate-900 dark:text-white mb-4 tracking-tight">Misi Kami</h2>
+                <p class="text-slate-600 dark:text-gray-400 leading-relaxed">
+                    Memberikan layanan perbaikan dan pemeliharaan IT yang transparan, cepat, dan berkualitas tinggi dengan dukungan teknisi tersertifikasi.
                 </p>
             </div>
         </div>
+
+        <section id="team" class="relative">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-100 dark:border-indigo-800 text-indigo-600 dark:text-indigo-400 text-xs font-black uppercase tracking-widest mb-4">
+                    Tim Kami
+                </div>
+                <h2 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tighter">
+                    Jajaran Founder & <span class="text-blue-600">C-Level</span>
+                </h2>
+                <p class="text-slate-500 dark:text-gray-400 mt-4">Dipimpin oleh tim profesional yang berdedikasi tinggi.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="group bg-white/80 dark:bg-gray-900/50 backdrop-blur-xl border border-white dark:border-gray-800 rounded-3xl p-8 text-center shadow-xl hover:shadow-blue-500/10 transition-all duration-500">
+                    <div class="relative mb-6 inline-block">
+                        <div class="absolute inset-0 bg-blue-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                        <div class="relative w-40 h-40 rounded-2xl overflow-hidden border-2 border-white dark:border-gray-700 shadow-2xl mx-auto">
+                            <img src="{{ asset('assets/img/team/anam.jpg') }}" onerror="this.src='https://ui-avatars.com/api/?name=M+Khoirul+Anam&background=2563EB&color=fff&size=200'" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        </div>
+                    </div>
+                    <h5 class="text-xl font-black text-slate-900 dark:text-white mb-1">M. Khoirul Anam</h5>
+                    <p class="text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-widest mb-4">Chief Executive Officer</p>
+                    <p class="text-sm text-slate-500 dark:text-gray-400">Pengambilan keputusan strategis dan hubungan kemitraan.</p>
+                </div>
+
+                <div class="group bg-white/80 dark:bg-gray-900/50 backdrop-blur-xl border border-white dark:border-gray-800 rounded-3xl p-8 text-center shadow-xl hover:shadow-indigo-500/10 transition-all duration-500">
+                    <div class="relative mb-6 inline-block">
+                        <div class="absolute inset-0 bg-indigo-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                        <div class="relative w-40 h-40 rounded-2xl overflow-hidden border-2 border-white dark:border-gray-700 shadow-2xl mx-auto">
+                            <img src="{{ asset('assets/img/team/raisa.jpg') }}" onerror="this.src='https://ui-avatars.com/api/?name=M+Raisa+Qisti&background=4F46E5&color=fff&size=200'" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        </div>
+                    </div>
+                    <h5 class="text-xl font-black text-slate-900 dark:text-white mb-1">M. Raisa Qisti Raihan M.Kom</h5>
+                    <p class="text-indigo-600 dark:text-indigo-400 text-xs font-black uppercase tracking-widest mb-4">specialist html dan begal tt</p>
+                    <p class="text-sm text-slate-500 dark:text-gray-400">Inovasi layanan IT Support dan pengembangan SOP.</p>
+                </div>
+
+                <div class="group bg-white/80 dark:bg-gray-900/50 backdrop-blur-xl border border-white dark:border-gray-800 rounded-3xl p-8 text-center shadow-xl hover:shadow-blue-500/10 transition-all duration-500">
+                    <div class="relative mb-6 inline-block">
+                        <div class="absolute inset-0 bg-blue-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                        <div class="relative w-40 h-40 rounded-2xl overflow-hidden border-2 border-white dark:border-gray-700 shadow-2xl mx-auto">
+                            <img src="{{ asset('assets/img/team/nabib.jpg') }}" onerror="this.src='https://ui-avatars.com/api/?name=Nabib+Khalish&background=2563EB&color=fff'" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        </div>
+                    </div>
+                    <h5 class="text-xl font-black text-slate-900 dark:text-white mb-1">Nabib Khalish Alfayadh</h5>
+                    <p class="text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-widest mb-4">Chief Operating Officer</p>
+                    <p class="text-sm text-slate-500 dark:text-gray-400">Manajemen teknisi lapangan dan kualitas layanan.</p>
+                </div>
+
+                <div class="group bg-white/80 dark:bg-gray-900/50 backdrop-blur-xl border border-white dark:border-gray-800 rounded-3xl p-8 text-center shadow-xl hover:shadow-blue-500/10 transition-all duration-500">
+                    <div class="relative mb-6 inline-block">
+                        <div class="absolute inset-0 bg-blue-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                        <div class="relative w-40 h-40 rounded-2xl overflow-hidden border-2 border-white dark:border-gray-700 shadow-2xl mx-auto">
+                            <img src="{{ asset('assets/img/team/arief.jpg') }}" onerror="this.src='https://ui-avatars.com/api/?name=Arief+Rachman&background=2563EB&color=fff'" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        </div>
+                    </div>
+                    <h5 class="text-xl font-black text-slate-900 dark:text-white mb-1">Arief Rachman Apriansyah</h5>
+                    <p class="text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-widest mb-4">Chief Customer Officer</p>
+                    <p class="text-sm text-slate-500 dark:text-gray-400">Layanan pelanggan dan pengalaman pengguna.</p>
+                </div>
+
+                <div class="group bg-white/80 dark:bg-gray-900/50 backdrop-blur-xl border border-white dark:border-gray-800 rounded-3xl p-8 text-center shadow-xl hover:shadow-indigo-500/10 transition-all duration-500">
+                    <div class="relative mb-6 inline-block">
+                        <div class="absolute inset-0 bg-indigo-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                        <div class="relative w-40 h-40 rounded-2xl overflow-hidden border-2 border-white dark:border-gray-700 shadow-2xl mx-auto">
+                            <img src="{{ asset('assets/img/team/ady.jpg') }}" onerror="this.src='https://ui-avatars.com/api/?name=Ady+Eka&background=4F46E5&color=fff'" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        </div>
+                    </div>
+                    <h5 class="text-xl font-black text-slate-900 dark:text-white mb-1">Ady Eka Apriliansyah</h5>
+                    <p class="text-indigo-600 dark:text-indigo-400 text-xs font-black uppercase tracking-widest mb-4">Chief Financial Officer</p>
+                    <p class="text-sm text-slate-500 dark:text-gray-400">Pengelolaan keuangan dan analisis profitabilitas.</p>
+                </div>
+
+                <div class="group bg-white/80 dark:bg-gray-900/50 backdrop-blur-xl border border-white dark:border-gray-800 rounded-3xl p-8 text-center shadow-xl hover:shadow-blue-500/10 transition-all duration-500">
+                    <div class="relative mb-6 inline-block">
+                        <div class="absolute inset-0 bg-blue-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                        <div class="relative w-40 h-40 rounded-2xl overflow-hidden border-2 border-white dark:border-gray-700 shadow-2xl mx-auto">
+                            <img src="{{ asset('assets/img/team/thoriq.jpg') }}" onerror="this.src='https://ui-avatars.com/api/?name=M+Thoriq&background=2563EB&color=fff'" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        </div>
+                    </div>
+                    <h5 class="text-xl font-black text-slate-900 dark:text-white mb-1">Muhammad Thoriq Al-Fath</h5>
+                    <p class="text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-widest mb-4">Chief Marketing Officer</p>
+                    <p class="text-sm text-slate-500 dark:text-gray-400">Branding, pemasaran digital, dan kampanye promosi.</p>
+                </div>
+
+            </div>
+        </section>
     </div>
 </div>
 @endsection

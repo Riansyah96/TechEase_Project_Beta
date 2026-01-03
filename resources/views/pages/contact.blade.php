@@ -3,161 +3,70 @@
 @section('title', 'Kontak')
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pt-24">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <!-- Contact Information -->
-        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
-            <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-6">Hubungi Kami</h1>
-            
-            <div class="space-y-6">
-                <div class="flex items-start">
-                    <div class="bg-blue-100 dark:bg-blue-900 p-3 rounded-lg">
-                        <i class="fas fa-map-marker-alt text-blue-600 dark:text-blue-400 text-xl"></i>
-                    </div>
-                    <div class="ml-4">
-                        <h3 class="font-bold text-gray-900 dark:text-white">Alamat</h3>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            Jl. Teknologi No. 123<br>
-                            Jakarta, Indonesia
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="flex items-start">
-                    <div class="bg-green-100 dark:bg-green-900 p-3 rounded-lg">
-                        <i class="fas fa-phone text-green-600 dark:text-green-400 text-xl"></i>
-                    </div>
-                    <div class="ml-4">
-                        <h3 class="font-bold text-gray-900 dark:text-white">Telepon</h3>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            +62 812-XXXX-XXXX<br>
-                            Senin - Jumat, 08:00 - 17:00 WIB
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="flex items-start">
-                    <div class="bg-purple-100 dark:bg-purple-900 p-3 rounded-lg">
-                        <i class="fas fa-envelope text-purple-600 dark:text-purple-400 text-xl"></i>
-                    </div>
-                    <div class="ml-4">
-                        <h3 class="font-bold text-gray-900 dark:text-white">Email</h3>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            contact@techease.id<br>
-                            support@techease.id
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="flex items-start">
-                    <div class="bg-orange-100 dark:bg-orange-900 p-3 rounded-lg">
-                        <i class="fas fa-clock text-orange-600 dark:text-orange-400 text-xl"></i>
-                    </div>
-                    <div class="ml-4">
-                        <h3 class="font-bold text-gray-900 dark:text-white">Jam Operasional</h3>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            Senin - Jumat: 08:00 - 17:00 WIB<br>
-                            Sabtu: 09:00 - 15:00 WIB<br>
-                            Minggu: Libur
-                        </p>
-                    </div>
-                </div>
+<div class="relative min-h-screen bg-slate-50 dark:bg-gray-950 overflow-hidden pt-32 pb-20">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none">
+        <div class="absolute top-[20%] right-[-10%] w-[40%] h-[40%] bg-blue-400/20 blur-[120px] rounded-full animate-pulse"></div>
+        <div class="absolute bottom-[20%] left-[-10%] w-[40%] h-[40%] bg-indigo-400/20 blur-[120px] rounded-full"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/30 border border-blue-100 dark:border-blue-800 text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-widest mb-6">
+                Hubungi Kami
             </div>
-            
-            <div class="mt-8">
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Ikuti Kami</h3>
-                <div class="flex space-x-4">
-                    <a href="#" class="p-3 bg-blue-600 text-white rounded-full hover:bg-blue-700">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="p-3 bg-pink-600 text-white rounded-full hover:bg-pink-700">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" class="p-3 bg-blue-400 text-white rounded-full hover:bg-blue-500">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="p-3 bg-blue-800 text-white rounded-full hover:bg-blue-900">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                </div>
-            </div>
+            <h1 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tighter">
+                Butuh Bantuan <span class="text-blue-600 dark:text-blue-400">Teknis?</span>
+            </h1>
         </div>
-        
-        <!-- Contact Form -->
-        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Kirim Pesan</h2>
-            
-            <form action="#" method="POST">
-                @csrf
-                <div class="space-y-6">
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                            Nama Lengkap
-                        </label>
-                        <input type="text" id="name" name="name" 
-                               class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 
-                                      rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
-                                      bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                               required>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div class="lg:col-span-5 space-y-6">
+                <div class="bg-white/80 dark:bg-gray-900/50 backdrop-blur-xl border border-white dark:border-gray-800 rounded-3xl p-8 shadow-xl">
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 bg-blue-600 rounded-xl text-white shadow-lg shadow-blue-500/30">
+                            <i class="fas fa-map-marker-alt text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-black text-slate-900 dark:text-white text-lg">Alamat Kantor</h3>
+                            <p class="text-slate-600 dark:text-gray-400 mt-2 italic">Jl. Teknologi No. 123, Jakarta, Indonesia.</p>
+                        </div>
                     </div>
-                    
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                            Email
-                        </label>
-                        <input type="email" id="email" name="email" 
-                               class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 
-                                      rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
-                                      bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                               required>
-                    </div>
-                    
-                    <div>
-                        <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                            Telepon
-                        </label>
-                        <input type="tel" id="phone" name="phone" 
-                               class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 
-                                      rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
-                                      bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
-                    </div>
-                    
-                    <div>
-                        <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                            Subjek
-                        </label>
-                        <select id="subject" name="subject" 
-                                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 
-                                       rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
-                                       bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                                required>
-                            <option value="">Pilih subjek</option>
-                            <option value="support">Dukungan Teknis</option>
-                            <option value="consultation">Konsultasi</option>
-                            <option value="partnership">Kemitraan</option>
-                            <option value="feedback">Feedback</option>
-                            <option value="other">Lainnya</option>
-                        </select>
-                    </div>
-                    
-                    <div>
-                        <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                            Pesan
-                        </label>
-                        <textarea id="message" name="message" rows="6" 
-                                  class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 
-                                         rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
-                                         bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                                  required></textarea>
-                    </div>
-                    
-                    <button type="submit" 
-                            class="w-full py-3 px-6 bg-blue-600 text-white font-semibold rounded-lg 
-                                   hover:bg-blue-700 transition duration-300">
-                        <i class="fas fa-paper-plane mr-2"></i>Kirim Pesan
-                    </button>
                 </div>
-            </form>
+
+                <div class="bg-white/80 dark:bg-gray-900/50 backdrop-blur-xl border border-white dark:border-gray-800 rounded-3xl p-8 shadow-xl">
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 bg-indigo-600 rounded-xl text-white shadow-lg shadow-indigo-500/30">
+                            <i class="fas fa-envelope text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-black text-slate-900 dark:text-white text-lg">Email Support</h3>
+                            <p class="text-slate-600 dark:text-gray-400 mt-2">contact@techease.id</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-7">
+                <form action="#" class="bg-white/80 dark:bg-gray-900/50 backdrop-blur-xl border border-white dark:border-gray-800 rounded-3xl p-8 md:p-10 shadow-2xl">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-xs font-black uppercase tracking-widest text-slate-500 dark:text-gray-400 mb-2">Nama Lengkap</label>
+                            <input type="text" class="w-full bg-slate-100 dark:bg-gray-800 border-none rounded-2xl px-5 py-4 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-600 outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-black uppercase tracking-widest text-slate-500 dark:text-gray-400 mb-2">Email</label>
+                            <input type="email" class="w-full bg-slate-100 dark:bg-gray-800 border-none rounded-2xl px-5 py-4 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-600 outline-none transition-all">
+                        </div>
+                    </div>
+                    <div class="mb-8">
+                        <label class="block text-xs font-black uppercase tracking-widest text-slate-500 dark:text-gray-400 mb-2">Pesan Anda</label>
+                        <textarea rows="5" class="w-full bg-slate-100 dark:bg-gray-800 border-none rounded-2xl px-5 py-4 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-600 outline-none transition-all"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-5 bg-blue-600 text-white rounded-2xl font-black shadow-xl hover:bg-blue-700 hover:scale-[1.02] active:scale-95 transition-all">
+                        Kirim Sekarang
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

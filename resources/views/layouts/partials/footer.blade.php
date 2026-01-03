@@ -32,18 +32,22 @@
                 <ul class="space-y-4 text-sm font-bold">
                     <li><a href="{{ route('home') }}" class="hover:text-blue-500 transition">Home</a></li>
                     <li><a href="{{ route('services.index') }}" class="hover:text-blue-500 transition">Layanan IT</a></li>
-                    <li><a href="#" class="hover:text-blue-500 transition">Tentang Kami</a></li>
-                    <li><a href="#" class="hover:text-blue-500 transition">Karir</a></li>
+                    {{-- Diarahkan ke rute 'about' --}}
+                    <li><a href="{{ route('about') }}" class="hover:text-blue-500 transition">Tentang Kami</a></li>
                 </ul>
             </div>
 
             <div class="md:col-span-2">
                 <h4 class="text-white font-black uppercase tracking-widest text-xs mb-6">Bantuan</h4>
                 <ul class="space-y-4 text-sm font-bold">
-                    <li><a href="#" class="hover:text-blue-500 transition">Hubungi Kami</a></li>
-                    <li><a href="#" class="hover:text-blue-500 transition">Pusat Bantuan</a></li>
-                    <li><a href="#" class="hover:text-blue-500 transition">Kebijakan Privasi</a></li>
-                    <li><a href="#" class="hover:text-blue-500 transition">Syarat & Ketentuan</a></li>
+                    {{-- Diubah dari pages.contact menjadi contact --}}
+                    <li><a href="{{ route('contact') }}" class="hover:text-blue-500 transition">Hubungi Kami</a></li>
+                    {{-- Karena rute 'sitemap' tidak ada di web.php, sementara dikosongkan agar tidak error --}}
+                    <li><a href="{{ route('sitemap') }}" class="hover:text-blue-500 transition">Pusat Bantuan</a></li>
+                    {{-- Diubah dari pages.privacy menjadi privacy --}}
+                    <li><a href="{{ route('privacy') }}" class="hover:text-blue-500 transition">Kebijakan Privasi</a></li>
+                    {{-- Diubah dari pages.terms menjadi terms --}}
+                    <li><a href="{{ route('terms') }}" class="hover:text-blue-500 transition">Syarat & Ketentuan</a></li>
                 </ul>
             </div>
 

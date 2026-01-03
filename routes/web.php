@@ -32,6 +32,7 @@ Route::view('/about', 'pages.about')->name('about');
 Route::view('/privacy-policy', 'pages.privacy')->name('privacy');
 Route::view('/terms-of-service', 'pages.terms')->name('terms');
 Route::view('/contact', 'pages.contact')->name('contact');
+Route::view('/sitemap', 'pages.sitemap')->name('sitemap');
 
 /*
 |--------------------------------------------------------------------------
