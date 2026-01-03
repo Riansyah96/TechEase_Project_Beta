@@ -49,9 +49,9 @@
                     Tim Kami
                 </div>
                 <h2 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tighter">
-                    Jajaran Founder & <span class="text-blue-600">C-Level</span>
+                    Expert <span class="text-blue-600">Development</span> Team
                 </h2>
-                <p class="text-slate-500 dark:text-gray-400 mt-4">Dipimpin oleh tim profesional yang berdedikasi tinggi.</p>
+                <p class="text-slate-500 dark:text-gray-400 mt-4">Berpengalaman dalam menghadirkan solusi digital yang andal.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -60,24 +60,24 @@
                     <div class="relative mb-6 inline-block">
                         <div class="absolute inset-0 bg-blue-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity"></div>
                         <div class="relative w-40 h-40 rounded-2xl overflow-hidden border-2 border-white dark:border-gray-700 shadow-2xl mx-auto">
-                            <img src="{{ asset('assets/img/team/anam.jpg') }}" onerror="this.src='https://ui-avatars.com/api/?name=M+Khoirul+Anam&background=2563EB&color=fff&size=200'" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            <img src="{{ asset('assets/img/team/anam.jpg') }}" onerror="this.src='https://ui-avatars.com/api/?name=Muhammad+Khoirul+Anam&background=2563EB&color=fff&size=200'" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                         </div>
                     </div>
-                    <h5 class="text-xl font-black text-slate-900 dark:text-white mb-1">M. Khoirul Anam</h5>
-                    <p class="text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-widest mb-4">Chief Executive Officer</p>
-                    <p class="text-sm text-slate-500 dark:text-gray-400">Pengambilan keputusan strategis dan hubungan kemitraan.</p>
+                    <h5 class="text-xl font-black text-slate-900 dark:text-white mb-1">Muhammad Khoirul Anam</h5>
+                    <p class="text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-widest mb-4">Project Manager</p>
+                    <p class="text-sm text-slate-500 dark:text-gray-400">Pengambil keputusan strategis, koordinasi tim, dan manajemen siklus proyek.</p>
                 </div>
 
                 <div class="group bg-white/80 dark:bg-gray-900/50 backdrop-blur-xl border border-white dark:border-gray-800 rounded-3xl p-8 text-center shadow-xl hover:shadow-indigo-500/10 transition-all duration-500">
                     <div class="relative mb-6 inline-block">
                         <div class="absolute inset-0 bg-indigo-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity"></div>
                         <div class="relative w-40 h-40 rounded-2xl overflow-hidden border-2 border-white dark:border-gray-700 shadow-2xl mx-auto">
-                            <img src="{{ asset('assets/img/team/raisa.jpg') }}" onerror="this.src='https://ui-avatars.com/api/?name=M+Raisa+Qisti&background=4F46E5&color=fff&size=200'" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            <img src="{{ asset('assets/img/team/arief.jpg') }}" onerror="this.src='https://ui-avatars.com/api/?name=Arief+Rachman&background=4F46E5&color=fff&size=200'" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                         </div>
                     </div>
-                    <h5 class="text-xl font-black text-slate-900 dark:text-white mb-1">M. Raisa Qisti Raihan M.Kom</h5>
-                    <p class="text-indigo-600 dark:text-indigo-400 text-xs font-black uppercase tracking-widest mb-4">specialist html dan begal tt</p>
-                    <p class="text-sm text-slate-500 dark:text-gray-400">Inovasi layanan IT Support dan pengembangan SOP.</p>
+                    <h5 class="text-xl font-black text-slate-900 dark:text-white mb-1">Arief Rachman Apriansyah</h5>
+                    <p class="text-indigo-600 dark:text-indigo-400 text-xs font-black uppercase tracking-widest mb-4">Lead Operations</p>
+                    <p class="text-sm text-slate-500 dark:text-gray-400">Manajemen operasional utama dan optimalisasi alur kerja layanan.</p>
                 </div>
 
                 <div class="group bg-white/80 dark:bg-gray-900/50 backdrop-blur-xl border border-white dark:border-gray-800 rounded-3xl p-8 text-center shadow-xl hover:shadow-blue-500/10 transition-all duration-500">
@@ -88,44 +88,44 @@
                         </div>
                     </div>
                     <h5 class="text-xl font-black text-slate-900 dark:text-white mb-1">Nabib Khalish Alfayadh</h5>
-                    <p class="text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-widest mb-4">Chief Operating Officer</p>
-                    <p class="text-sm text-slate-500 dark:text-gray-400">Manajemen teknisi lapangan dan kualitas layanan.</p>
+                    <p class="text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-widest mb-4">Junior Operations</p>
+                    <p class="text-sm text-slate-500 dark:text-gray-400">Dukungan operasional lapangan dan monitoring kualitas layanan teknis.</p>
                 </div>
 
                 <div class="group bg-white/80 dark:bg-gray-900/50 backdrop-blur-xl border border-white dark:border-gray-800 rounded-3xl p-8 text-center shadow-xl hover:shadow-blue-500/10 transition-all duration-500">
                     <div class="relative mb-6 inline-block">
                         <div class="absolute inset-0 bg-blue-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity"></div>
                         <div class="relative w-40 h-40 rounded-2xl overflow-hidden border-2 border-white dark:border-gray-700 shadow-2xl mx-auto">
-                            <img src="{{ asset('assets/img/team/arief.jpg') }}" onerror="this.src='https://ui-avatars.com/api/?name=Arief+Rachman&background=2563EB&color=fff'" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            <img src="{{ asset('assets/img/team/thoriq.jpg') }}" onerror="this.src='https://ui-avatars.com/api/?name=Muhammad+Thoriq&background=2563EB&color=fff'" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                         </div>
                     </div>
-                    <h5 class="text-xl font-black text-slate-900 dark:text-white mb-1">Arief Rachman Apriansyah</h5>
-                    <p class="text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-widest mb-4">Chief Customer Officer</p>
-                    <p class="text-sm text-slate-500 dark:text-gray-400">Layanan pelanggan dan pengalaman pengguna.</p>
+                    <h5 class="text-xl font-black text-slate-900 dark:text-white mb-1">Muhammad Thoriq Al-Fath</h5>
+                    <p class="text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-widest mb-4">Lead Developer</p>
+                    <p class="text-sm text-slate-500 dark:text-gray-400">Arsitektur sistem, pengembangan core engine, dan inovasi teknologi.</p>
                 </div>
 
                 <div class="group bg-white/80 dark:bg-gray-900/50 backdrop-blur-xl border border-white dark:border-gray-800 rounded-3xl p-8 text-center shadow-xl hover:shadow-indigo-500/10 transition-all duration-500">
                     <div class="relative mb-6 inline-block">
                         <div class="absolute inset-0 bg-indigo-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity"></div>
                         <div class="relative w-40 h-40 rounded-2xl overflow-hidden border-2 border-white dark:border-gray-700 shadow-2xl mx-auto">
-                            <img src="{{ asset('assets/img/team/ady.jpg') }}" onerror="this.src='https://ui-avatars.com/api/?name=Ady+Eka&background=4F46E5&color=fff'" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            <img src="{{ asset('assets/img/team/raisa.jpg') }}" onerror="this.src='https://ui-avatars.com/api/?name=M+Raisa+Qisti&background=4F46E5&color=fff&size=200'" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                         </div>
                     </div>
-                    <h5 class="text-xl font-black text-slate-900 dark:text-white mb-1">Ady Eka Apriliansyah</h5>
-                    <p class="text-indigo-600 dark:text-indigo-400 text-xs font-black uppercase tracking-widest mb-4">Chief Financial Officer</p>
-                    <p class="text-sm text-slate-500 dark:text-gray-400">Pengelolaan keuangan dan analisis profitabilitas.</p>
+                    <h5 class="text-xl font-black text-slate-900 dark:text-white mb-1">M. Raisa Qisti Raihan</h5>
+                    <p class="text-indigo-600 dark:text-indigo-400 text-xs font-black uppercase tracking-widest mb-4">Junior Developer</p>
+                    <p class="text-sm text-slate-500 dark:text-gray-400">Pengembangan antarmuka pengguna dan maintenance modul sistem.</p>
                 </div>
 
                 <div class="group bg-white/80 dark:bg-gray-900/50 backdrop-blur-xl border border-white dark:border-gray-800 rounded-3xl p-8 text-center shadow-xl hover:shadow-blue-500/10 transition-all duration-500">
                     <div class="relative mb-6 inline-block">
                         <div class="absolute inset-0 bg-blue-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity"></div>
                         <div class="relative w-40 h-40 rounded-2xl overflow-hidden border-2 border-white dark:border-gray-700 shadow-2xl mx-auto">
-                            <img src="{{ asset('assets/img/team/thoriq.jpg') }}" onerror="this.src='https://ui-avatars.com/api/?name=M+Thoriq&background=2563EB&color=fff'" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            <img src="{{ asset('assets/img/team/ady.jpg') }}" onerror="this.src='https://ui-avatars.com/api/?name=Ady+Eka&background=2563EB&color=fff'" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                         </div>
                     </div>
-                    <h5 class="text-xl font-black text-slate-900 dark:text-white mb-1">Muhammad Thoriq Al-Fath</h5>
-                    <p class="text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-widest mb-4">Chief Marketing Officer</p>
-                    <p class="text-sm text-slate-500 dark:text-gray-400">Branding, pemasaran digital, dan kampanye promosi.</p>
+                    <h5 class="text-xl font-black text-slate-900 dark:text-white mb-1">Ady Eka Apriliansyah</h5>
+                    <p class="text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-widest mb-4">Security Specialist</p>
+                    <p class="text-sm text-slate-500 dark:text-gray-400">Perlindungan data sensitif, audit keamanan, dan pertahanan sistem.</p>
                 </div>
 
             </div>
