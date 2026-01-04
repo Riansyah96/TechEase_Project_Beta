@@ -92,6 +92,7 @@ services:
     environment:
       # Format eksplisit dengan tcp untuk MySQL 8.0
       DATA_SOURCE_NAME: "techease_user:password123@tcp(db:3306)/techease_db"
+    user: "1000:1000"
     depends_on:
       - db
     networks:
