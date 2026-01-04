@@ -83,7 +83,6 @@ services:
 
   mysql-exporter:
     image: prom/mysqld-exporter:latest
-    restart: unless-stopped
     environment:
       DATA_SOURCE_NAME: "techease_user:password123@(db:3306)/"
     command:
