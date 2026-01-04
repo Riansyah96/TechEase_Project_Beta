@@ -21,13 +21,13 @@ jobs:
             cd /var/www/my-laravel-app
             git pull origin main
             
-            # Update container dengan build terbaru dan force recreate untuk monitoring
+            # Restart & Build monitoring tools
             docker compose up -d --build --remove-orphans
             
-            # Jalankan command Laravel
+            # Berikan izin metrik ke database secara otomatis
+            docker compose exec -T db mysql -u root -padmin123 -e "GRANT PROCESS, REPLICATION CLIENT, SELECT ON *.* TO 'techease_user'@'%'; FLUSH PRIVILEGES;"
+            
+            # Laravel Standard Commands
             docker compose exec -T app composer install --no-dev --optimize-autoloader
             docker compose exec -T app php artisan migrate --force
             docker compose exec -T app php artisan config:cache
-            
-            # Tambahkan izin monitoring ke MySQL (Hanya perlu sekali, namun aman dijalankan berulang)
-            docker compose exec -T db mysql -u root -padmin123 -e "GRANT PROCESS, REPLICATION CLIENT, SELECT ON *.* TO 'techease_user'@'%'; FLUSH PRIVILEGES;"

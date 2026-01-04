@@ -1,5 +1,5 @@
 services:
-  # Service PHP-FPM (Aplikasi Laravel)
+  # Aplikasi Laravel
   app:
     build:
       context: .
@@ -13,7 +13,7 @@ services:
     networks:
       - techease_network
 
-  # Service Database (MySQL)
+  # Database MySQL
   db:
     image: mysql:8.0
     restart: unless-stopped
@@ -27,7 +27,7 @@ services:
     networks:
       - techease_network
 
-  # Service Web Server (Nginx)
+  # Web Server
   nginx:
     image: nginx:alpine
     restart: unless-stopped
@@ -42,7 +42,7 @@ services:
     networks:
       - techease_network
 
-  # --- TOOLS MONITORING ---
+  # --- SISTEM MONITORING ---
 
   prometheus:
     image: prom/prometheus:latest
@@ -83,7 +83,7 @@ services:
     image: prom/mysqld-exporter:latest
     restart: unless-stopped
     environment:
-      # Format: user:password@(hostname:port)/
+      # Format yang benar untuk MySQL 8.0
       DATA_SOURCE_NAME: "techease_user:password123@(db:3306)/"
     command:
       - "--collect.info_schema.innodb_metrics"
