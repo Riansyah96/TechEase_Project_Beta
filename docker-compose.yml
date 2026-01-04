@@ -1,5 +1,4 @@
 services:
-  # Service Laravel Anda tetap sama
   app:
     build:
       context: .
@@ -40,8 +39,6 @@ services:
     networks:
       - techease_network
 
-  # --- TAMBAHKAN TOOLS MONITORING DI BAWAH INI ---
-
   prometheus:
     image: prom/prometheus:latest
     restart: unless-stopped
@@ -81,7 +78,11 @@ services:
     image: prom/mysqld-exporter:latest
     restart: unless-stopped
     environment:
-      DATA_SOURCE_NAME: "techease_user:password123@(db:3306)/techease_db"
+      # Format: user:password@(hostname:port)/
+      DATA_SOURCE_NAME: "techease_user:password123@(db:3306)/"
+    command:
+      - "--collect.info_schema.innodb_metrics"
+      - "--collect.all"
     depends_on:
       - db
     networks:
@@ -93,5 +94,5 @@ networks:
 
 volumes:
   db_data:
-  prometheus_data: # Volume baru
-  grafana_data:   # Volume baru
+  prometheus_data:
+  grafana_data:
