@@ -51,7 +51,7 @@ services:
       DATA_SOURCE_NAME: "techease_user:password123@(db:3306)/techease_db"
     command:
       - "--collect.info_schema.innodb_metrics"
-      # PERBAIKAN: --collect.all dihapus karena tidak didukung image terbaru
+      # Flag --collect.all dihapus karena tidak didukung
     depends_on:
       - db
     networks:
