@@ -1,4 +1,5 @@
 services:
+  # Service PHP-FPM (Aplikasi Laravel)
   app:
     build:
       context: .
@@ -12,6 +13,7 @@ services:
     networks:
       - techease_network
 
+  # Service Database (MySQL)
   db:
     image: mysql:8.0
     restart: unless-stopped
@@ -25,6 +27,7 @@ services:
     networks:
       - techease_network
 
+  # Service Web Server (Nginx)
   nginx:
     image: nginx:alpine
     restart: unless-stopped
@@ -38,6 +41,8 @@ services:
       - app
     networks:
       - techease_network
+
+  # --- TOOLS MONITORING ---
 
   prometheus:
     image: prom/prometheus:latest

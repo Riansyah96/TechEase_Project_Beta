@@ -17,21 +17,17 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          # Perbaikan: Pastikan 'script' sejajar dengan 'host/username/key'
           script: |
-            cd /var/www/my-laravel-app || git clone https://github.com/${{ github.repository }}.git /var/www/my-laravel-app
             cd /var/www/my-laravel-app
             git pull origin main
             
-            # Buat file .env jika belum ada (opsional jika sudah manual)
-            if [ ! -f .env ]; then cp .env.example .env; fi
+            # Update container dengan build terbaru dan force recreate untuk monitoring
+            docker compose up -d --build --remove-orphans
             
-            docker compose up -d --build
-            
-            # PASANG VENDOR DI SINI
+            # Jalankan command Laravel
             docker compose exec -T app composer install --no-dev --optimize-autoloader
-            
-            # Jalankan sisanya
-            docker compose exec -T app php artisan key:generate --force
             docker compose exec -T app php artisan migrate --force
             docker compose exec -T app php artisan config:cache
+            
+            # Tambahkan izin monitoring ke MySQL (Hanya perlu sekali, namun aman dijalankan berulang)
+            docker compose exec -T db mysql -u root -padmin123 -e "GRANT PROCESS, REPLICATION CLIENT, SELECT ON *.* TO 'techease_user'@'%'; FLUSH PRIVILEGES;"
