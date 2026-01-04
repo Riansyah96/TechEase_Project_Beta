@@ -83,12 +83,14 @@ services:
 
   mysql-exporter:
     image: prom/mysqld-exporter:latest
+    restart: unless-stopped
     environment:
+      # PERBAIKAN: Gunakan format URI yang lebih eksplisit
       DATA_SOURCE_NAME: "techease_user:password123@(db:3306)/"
     command:
-      # PERBAIKAN: Menghapus --collect.all yang menyebabkan error "unknown long flag"
       - "--collect.info_schema.innodb_metrics"
       - "--mysqld.address=db:3306"
+      - "--config.my-cnf="
     depends_on:
       - db
     networks:
