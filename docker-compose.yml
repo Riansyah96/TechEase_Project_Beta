@@ -85,16 +85,15 @@ services:
     networks:
       - techease_network
 
-  mysql-exporter:
+mysql-exporter:
     image: prom/mysqld-exporter:latest
     container_name: mysql-exporter
     restart: unless-stopped
     environment:
-      # DATA_SOURCE_NAME disesuaikan untuk menyertakan nama database
-      DATA_SOURCE_NAME: "techease_user:password123@(db:3306)/techease_db"
-    command:
-      - "--collect.info_schema.innodb_metrics"
-      # Flag --collect.all telah dihapus karena menyebabkan container restart
+      # Gunakan variabel terpisah agar lebih mudah divalidasi oleh exporter
+      DATA_SOURCE_NAME: "techease_user:(db:3306)/techease_db"
+      MYSQLD_EXPORTER_PASSWORD: "password123" 
+    # Hapus blok 'command' sepenuhnya untuk menggunakan default bawaan image
     depends_on:
       - db
     networks:
