@@ -94,7 +94,7 @@ services:
     command:
       - "--config.my-cnf=/root/.my.cnf"
       - "--collect.info_schema.innodb_metrics"
-      - "--collect.all"
+      # Flag --collect.all dihapus karena menyebabkan error pada v0.18.0
     depends_on:
       - db
     networks:
