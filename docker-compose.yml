@@ -90,9 +90,11 @@ services:
     container_name: mysql-exporter
     restart: unless-stopped
     volumes:
-      # Memasang file kredensial ke lokasi default yang dicari exporter
       - ./monitoring/mysql-exporter/.my.cnf:/root/.my.cnf
-    # Bagian environment dihapus agar tidak bentrok dengan .my.cnf
+    command:
+      - "--config.my-cnf=/root/.my.cnf"
+      - "--collect.info_schema.innodb_metrics"
+      - "--collect.all"
     depends_on:
       - db
     networks:
