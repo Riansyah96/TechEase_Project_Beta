@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     curl \
-    gnupg # Tambahkan gnupg untuk install node
+    gnupg
 
 # Install Node.js (Versi 20 LTS)
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
@@ -30,7 +30,9 @@ COPY . .
 RUN composer install --no-dev --optimize-autoloader
 RUN npm install && npm run build
 
-RUN chown -R www-data:www-data /var/www/storage /var/www/cache
+# PERBAIKAN: Pastikan folder storage dan cache dibuat terlebih dahulu sebelum chown
+RUN mkdir -p /var/www/storage /var/www/cache && \
+    chown -R www-data:www-data /var/www/storage /var/www/cache
 
 EXPOSE 9000
 CMD ["php-fpm"]
