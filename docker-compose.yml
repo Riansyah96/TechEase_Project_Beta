@@ -37,6 +37,8 @@ services:
     volumes:
       - .:/var/www
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      # PERBAIKAN: Mount folder SSL agar file .pem terbaca oleh Nginx
+      - /etc/letsencrypt:/etc/letsencrypt:ro
     depends_on:
       - app
     networks:
@@ -83,11 +85,11 @@ services:
     image: prom/mysqld-exporter:latest
     restart: unless-stopped
     environment:
-      # Format yang benar untuk MySQL 8.0
       DATA_SOURCE_NAME: "techease_user:password123@(db:3306)/"
     command:
+      # PERBAIKAN: Menghapus --collect.all yang menyebabkan error "unknown long flag"
       - "--collect.info_schema.innodb_metrics"
-      - "--collect.all"
+      - "--mysqld.address=db:3306"
     depends_on:
       - db
     networks:
