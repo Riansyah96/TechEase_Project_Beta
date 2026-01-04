@@ -29,7 +29,7 @@ services:
     networks:
       - techease_network
 
-  # Web Server
+  # Web Server Nginx
   nginx:
     image: nginx:alpine
     container_name: nginx_server
@@ -47,6 +47,7 @@ services:
       - techease_network
 
   # --- SISTEM MONITORING ---
+  
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
@@ -89,12 +90,9 @@ services:
     image: prom/mysqld-exporter:latest
     container_name: mysql-exporter
     restart: unless-stopped
-    volumes:
-      - ./monitoring/mysql-exporter/.my.cnf:/root/.my.cnf
-    command:
-      - "--config.my-cnf=/root/.my.cnf"
-      - "--collect.info_schema.innodb_metrics"
-      # Flag --collect.all dihapus karena menyebabkan error pada v0.18.0
+    environment:
+      # Format: user:password@(hostname:port)/
+      DATA_SOURCE_NAME: "techease_user:password123@(db:3306)/"
     depends_on:
       - db
     networks:
