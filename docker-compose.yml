@@ -43,15 +43,15 @@ services:
     networks:
       - techease_network
 
-  mysql-exporter:
+ mysql-exporter:
     image: prom/mysqld-exporter:latest
     container_name: mysql-exporter
     restart: unless-stopped
     environment:
+      # Pastikan DB_DATA_SOURCE_NAME mengarah ke container 'db'
       DATA_SOURCE_NAME: "techease_user:password123@(db:3306)/techease_db"
-    command:
-      - "--collect.info_schema.innodb_metrics"
-      # Flag --collect.all dihapus karena tidak didukung
+    # Hapus seluruh blok 'command' jika Anda ragu, 
+    # karena default-nya sudah cukup untuk monitoring dasar.
     depends_on:
       - db
     networks:
