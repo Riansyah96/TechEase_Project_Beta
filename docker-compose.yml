@@ -46,7 +46,7 @@ services:
     networks:
       - techease_network
   mailserver:
-    image: docker-mailserver/docker-mailserver:latest
+    image: mailserver/docker-mailserver:latest
     container_name: mailserver
     hostname: mail
     domainname: techease.my.id
