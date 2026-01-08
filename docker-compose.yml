@@ -60,10 +60,11 @@ services:
       - ./docker-data/dms/mail-config/:/tmp/docker-mailserver/
       - /etc/localtime:/etc/localtime:ro
     environment:
-      - ENABLE_SPAMASSASSIN=1
-      - ENABLE_CLAMAV=0
+      - ENABLE_SPAMASSASSIN=0  # Matikan sementara untuk stabilitas
+      - ENABLE_CLAMAV=0        # WAJIB: Matikan karena makan RAM > 1GB
       - ENABLE_FAIL2BAN=1
       - SSL_TYPE=letsencrypt
+      - ONE_DIR=1
     restart: always
     networks:
       - techease_network
