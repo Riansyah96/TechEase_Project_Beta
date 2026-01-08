@@ -45,6 +45,28 @@ services:
       - app
     networks:
       - techease_network
+  mailserver:
+    image: docker-mailserver/docker-mailserver:latest
+    container_name: mailserver
+    hostname: mail
+    domainname: techease.my.id
+    ports:
+      - "25:25"    # SMTP
+      - "587:587"  # Submission
+      - "993:993"  # IMAPS
+    volumes:
+      - ./docker-data/dms/mail-data/:/var/mail/
+      - ./docker-data/dms/mail-state/:/var/mail-state/
+      - ./docker-data/dms/mail-config/:/tmp/docker-mailserver/
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - ENABLE_SPAMASSASSIN=1
+      - ENABLE_CLAMAV=0
+      - ENABLE_FAIL2BAN=1
+      - SSL_TYPE=letsencrypt
+    restart: always
+    networks:
+      - techease_network
 
   # --- SISTEM MONITORING ---
   
