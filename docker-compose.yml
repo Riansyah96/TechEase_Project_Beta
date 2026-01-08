@@ -90,9 +90,12 @@ services:
     image: prom/mysqld-exporter:latest
     container_name: mysql-exporter
     restart: unless-stopped
+    volumes:
+      # Mount file ke root agar mudah ditemukan
+      - ./monitoring/mysql-exporter/.my.cnf:/root/.my.cnf:ro
     environment:
-      # Format: user:password@(hostname:port)/
-      DATA_SOURCE_NAME: "techease_user:password123@(db:3306)/"
+      # Pilih salah satu format (di sini menggunakan format list yang konsisten)
+      - DATA_SOURCE_CUSTOM_CONFIG=/root/.my.cnf
     depends_on:
       - db
     networks:
