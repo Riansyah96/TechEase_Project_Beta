@@ -114,11 +114,11 @@ services:
     container_name: mysql-exporter
     restart: unless-stopped
     volumes:
-      # Mount file ke root agar mudah ditemukan
-      - ./monitoring/mysql-exporter/.my.cnf:/root/.my.cnf:ro
+      - ./monitoring/mysql-exporter/.my.cnf:/.my.cnf:ro
     environment:
-      # Pilih salah satu format (di sini menggunakan format list yang konsisten)
-      - DATA_SOURCE_CUSTOM_CONFIG=/root/.my.cnf
+      - DATA_SOURCE_USER=techease_user
+      - DATA_SOURCE_PASS=password123
+      - DATA_SOURCE_URI=db:3306
     depends_on:
       - db
     networks:
