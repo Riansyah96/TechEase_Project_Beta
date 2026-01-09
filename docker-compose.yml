@@ -113,8 +113,6 @@ services:
     image: prom/mysqld-exporter:latest
     container_name: mysql-exporter
     restart: unless-stopped
-    volumes:
-      - ./monitoring/mysql-exporter/.my.cnf:/.my.cnf:ro
     environment:
       - DATA_SOURCE_USER=techease_user
       - DATA_SOURCE_PASS=password123
