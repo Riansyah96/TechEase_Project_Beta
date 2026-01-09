@@ -1,5 +1,4 @@
 services:
-  # Aplikasi Laravel
   app:
     build:
       context: .
@@ -14,7 +13,6 @@ services:
     networks:
       - techease_network
 
-  # Database MySQL
   db:
     image: mysql:8.0
     container_name: db
@@ -29,7 +27,6 @@ services:
     networks:
       - techease_network
 
-  # Web Server Nginx
   nginx:
     image: nginx:alpine
     container_name: nginx_server
@@ -46,7 +43,6 @@ services:
     networks:
       - techease_network
 
-  # Mailserver - Perbaikan SSL Domain
   mailserver:
     image: mailserver/docker-mailserver:latest
     container_name: mailserver
@@ -63,17 +59,16 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/letsencrypt:/etc/letsencrypt:ro
     environment:
+      - SSL_TYPE=letsencrypt
+      - LETSENCRYPT_DOMAIN=techease.my.id
       - ENABLE_SPAMASSASSIN=0
       - ENABLE_CLAMAV=0
       - ENABLE_FAIL2BAN=1
-      - SSL_TYPE=letsencrypt
-      - LETSENCRYPT_DOMAIN=techease.my.id
       - ONE_DIR=1
     restart: always
     networks:
       - techease_network
 
-  # Prometheus
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
@@ -88,7 +83,6 @@ services:
     networks:
       - techease_network
 
-  # Grafana
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
@@ -100,7 +94,6 @@ services:
     networks:
       - techease_network
 
-  # Node Exporter
   node-exporter:
     image: prom/node-exporter:latest
     container_name: node-exporter
@@ -108,12 +101,12 @@ services:
     networks:
       - techease_network
 
-  # MySQL Exporter - Perbaikan: Tanpa file .my.cnf
   mysql-exporter:
     image: prom/mysqld-exporter:latest
     container_name: mysql-exporter
     restart: unless-stopped
     environment:
+      # Menggunakan koneksi langsung, menghilangkan error "no user specified"
       - DATA_SOURCE_NAME=techease_user:password123@(db:3306)/
     depends_on:
       - db
