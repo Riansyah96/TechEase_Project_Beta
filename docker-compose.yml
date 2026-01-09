@@ -45,25 +45,29 @@ services:
       - app
     networks:
       - techease_network
+
+  # Mail Server - PERBAIKAN: Ditambahkan LETSENCRYPT_DOMAIN
   mailserver:
     image: mailserver/docker-mailserver:latest
     container_name: mailserver
     hostname: mail
     domainname: techease.my.id
     ports:
-      - "25:25"    # SMTP
-      - "587:587"  # Submission
-      - "993:993"  # IMAPS
+      - "25:25"
+      - "587:587"
+      - "993:993"
     volumes:
       - ./docker-data/dms/mail-data/:/var/mail/
       - ./docker-data/dms/mail-state/:/var/mail-state/
       - ./docker-data/dms/mail-config/:/tmp/docker-mailserver/
       - /etc/localtime:/etc/localtime:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
     environment:
-      - ENABLE_SPAMASSASSIN=0  # Matikan sementara untuk stabilitas
-      - ENABLE_CLAMAV=0        # WAJIB: Matikan karena makan RAM > 1GB
+      - ENABLE_SPAMASSASSIN=0
+      - ENABLE_CLAMAV=0
       - ENABLE_FAIL2BAN=1
       - SSL_TYPE=letsencrypt
+      - LETSENCRYPT_DOMAIN=techease.my.id  # Memastikan folder SSL ditemukan
       - ONE_DIR=1
     restart: always
     networks:
@@ -109,14 +113,13 @@ services:
     networks:
       - techease_network
 
+  # MySQL Exporter - PERBAIKAN: Menggunakan DATA_SOURCE_NAME langsung
   mysql-exporter:
     image: prom/mysqld-exporter:latest
     container_name: mysql-exporter
     restart: unless-stopped
     environment:
-      - DATA_SOURCE_USER=techease_user
-      - DATA_SOURCE_PASS=password123
-      - DATA_SOURCE_URI=db:3306
+      - DATA_SOURCE_NAME=techease_user:password123@(db:3306)/
     depends_on:
       - db
     networks:
