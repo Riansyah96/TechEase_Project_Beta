@@ -46,7 +46,7 @@ services:
     networks:
       - techease_network
 
-  # Mail Server - PERBAIKAN: Ditambahkan LETSENCRYPT_DOMAIN
+  # Mailserver - Perbaikan SSL Domain
   mailserver:
     image: mailserver/docker-mailserver:latest
     container_name: mailserver
@@ -67,14 +67,13 @@ services:
       - ENABLE_CLAMAV=0
       - ENABLE_FAIL2BAN=1
       - SSL_TYPE=letsencrypt
-      - LETSENCRYPT_DOMAIN=techease.my.id  # Memastikan folder SSL ditemukan
+      - LETSENCRYPT_DOMAIN=techease.my.id
       - ONE_DIR=1
     restart: always
     networks:
       - techease_network
 
-  # --- SISTEM MONITORING ---
-  
+  # Prometheus
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
@@ -87,6 +86,7 @@ services:
     networks:
       - techease_network
 
+  # Grafana
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
@@ -98,30 +98,21 @@ services:
     networks:
       - techease_network
 
+  # Node Exporter
   node-exporter:
     image: prom/node-exporter:latest
     container_name: node-exporter
     restart: unless-stopped
-    volumes:
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /:/rootfs:ro
-    command:
-      - '--path.procfs=/host/proc'
-      - '--path.sysfs=/host/sys'
-      - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
     networks:
       - techease_network
 
-  # MySQL Exporter - PERBAIKAN: Menggunakan DATA_SOURCE_NAME langsung
+  # MySQL Exporter - Perbaikan: Tanpa file .my.cnf
   mysql-exporter:
     image: prom/mysqld-exporter:latest
     container_name: mysql-exporter
     restart: unless-stopped
-    volumes:
-      - ./monitoring/mysql-exporter/.my.cnf:/.my.cnf:ro  # Mount ke root kontainer
     environment:
-      - DATA_SOURCE_CUSTOM_CONFIG=/.my.cnf
+      - DATA_SOURCE_NAME=techease_user:password123@(db:3306)/
     depends_on:
       - db
     networks:
