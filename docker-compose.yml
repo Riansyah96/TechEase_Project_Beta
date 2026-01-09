@@ -118,8 +118,10 @@ services:
     image: prom/mysqld-exporter:latest
     container_name: mysql-exporter
     restart: unless-stopped
+    volumes:
+      - ./monitoring/mysql-exporter/.my.cnf:/.my.cnf:ro  # Mount ke root kontainer
     environment:
-      - DATA_SOURCE_NAME=techease_user:password123@(db:3306)/
+      - DATA_SOURCE_CUSTOM_CONFIG=/.my.cnf
     depends_on:
       - db
     networks:
