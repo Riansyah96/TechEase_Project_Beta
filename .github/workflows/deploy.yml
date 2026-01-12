@@ -17,17 +17,22 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
+          # Tambahkan timeout di bawah ini (30 menit)
+          command_timeout: 30m 
           script: |
             cd /var/www/my-laravel-app
             git pull origin main
             
-            # Restart & Build monitoring tools
+            # Restart & Build dengan progress plain agar log tidak berantakan
             docker compose up -d --build --remove-orphans
             
             # Berikan izin metrik ke database secara otomatis
+            # Menggunakan -T (disable pseudo-tty) sudah benar untuk CI/CD
             docker compose exec -T db mysql -u root -padmin123 -e "GRANT PROCESS, REPLICATION CLIENT, SELECT ON *.* TO 'techease_user'@'%'; FLUSH PRIVILEGES;"
             
             # Laravel Standard Commands
             docker compose exec -T app composer install --no-dev --optimize-autoloader
             docker compose exec -T app php artisan migrate --force
             docker compose exec -T app php artisan config:cache
+            docker compose exec -T app php artisan route:cache
+            docker compose exec -T app php artisan view:cache
