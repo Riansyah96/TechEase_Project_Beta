@@ -40,7 +40,7 @@
                         </div>
                         <div>
                             <h3 class="font-black text-slate-900 dark:text-white text-lg">Email Support</h3>
-                            <p class="text-slate-600 dark:text-gray-400 mt-2">contact@techease.id</p>
+                            <p class="text-slate-600 dark:text-gray-400 mt-2">cs@techease.id</p>
                         </div>
                     </div>
                 </div>
