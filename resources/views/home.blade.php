@@ -201,7 +201,7 @@
                         Punya masalah IT yang <br> <span class="text-blue-400 dark:text-blue-200">Menghambat Bisnis?</span>
                     </h2>
                     <p class="text-blue-100/70 text-xl font-medium mb-0">
-                        Pesan teknisi sekarang dan dapatkan diskon 10% untuk pesanan pertama Anda.
+                        Pesan teknisi sekarang dan dapatkan diskon 15% untuk pesanan pertama Anda.
                     </p>
                 </div>
                 <div class="flex flex-col gap-4 w-full md:w-auto">
